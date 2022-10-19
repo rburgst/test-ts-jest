@@ -1,4 +1,4 @@
-import { foo } from "."
+import { foo } from "./index"
 
 describe("index", () => {
     it("should not blow up", () => {

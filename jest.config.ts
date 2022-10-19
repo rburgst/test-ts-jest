@@ -1,8 +1,18 @@
-import type {Config} from 'jest';
+import type { Config } from "jest";
 
-const config : Config= {
-  preset: 'ts-jest',
-  testEnvironment: 'jsdom',
+const config: Config = {
+  preset: "ts-jest/presets/default-esm",
+  testEnvironment: "jsdom",
+  // [...]
+  extensionsToTreatAsEsm: [".ts"],
+  transform: {
+    "^.+\\.tsx?$": [
+      "ts-jest",
+      {
+        useESM: true,
+      },
+    ],
+  },
 };
 
-export default config
+export default config;
