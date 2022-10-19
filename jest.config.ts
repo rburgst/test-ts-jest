@@ -1,15 +1,17 @@
 import type { Config } from "jest";
-
 const config: Config = {
   testEnvironment: "jsdom",
+  extensionsToTreatAsEsm: ['.ts'], // this is required in Jest doc https://jestjs.io/docs/next/configuration#extensionstotreatasesm-arraystring
   transform: {
-    "^.+\\.tsx?$": [
+    "^.+\.m?[tj]sx?$": [
       "ts-jest",
       {
-        useESM: true,
+        useESM: true, // this tells `ts-jest` ready to transform files to ESM syntax
       },
     ],
   },
+  moduleNameMapper: {
+    'preact': '<rootDir>/node_modules/preact/dist/preact.mjs' // tell Jest to give this file to transformer, in this case `ts-jest` is a transformer.
+  }
 };
-
 export default config;
