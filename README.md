@@ -3,8 +3,8 @@ Sample repo showing a ts-jest problem with jsdom testEnvironment
 To reproduce run
 
 ```
-pnpm install
-pnpm jest
+yarn install
+yarn jest
 ```
 
 You will get 

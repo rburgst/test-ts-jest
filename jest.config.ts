@@ -12,6 +12,9 @@ const config: Config = {
   },
   moduleNameMapper: {
     'preact': '<rootDir>/node_modules/preact/dist/preact.mjs' // tell Jest to give this file to transformer, in this case `ts-jest` is a transformer.
-  }
+  },
+  setupFilesAfterEnv: [
+    "@testing-library/jest-dom/extend-expect"
+  ]
 };
 export default config;
