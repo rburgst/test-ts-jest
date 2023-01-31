@@ -1,5 +1,4 @@
-Sample repo showing a ts-jest problem with jsdom testEnvironment
-
+Sample repo showing a ts-jest problem with preact and preact-testing-library
 To reproduce run
 
 ```
@@ -9,17 +8,22 @@ yarn jest
 
 You will get 
 ```
-    SyntaxError: Unexpected token 'export'
+$ NODE_OPTIONS=--experimental-vm-modules jest
+ FAIL  src/foo.test.tsx
+  ● Test suite failed to run
 
-    > 1 | import { createRef } from 'preact'
+    Must use import to load ES Module: /Users/user/test-ts-jest/node_modules/preact/dist/preact.mjs
+
+    > 1 | import { createRef, FunctionComponent } from 'preact';
         | ^
-      2 |
-      3 |
-      4 | export function foo() {
+      2 | import React from 'preact/compat';
+      3 | import { useState } from 'preact/compat';
+      4 |
 
-      at Runtime.createScriptFromCode (node_modules/.pnpm/jest-runtime@29.0.3/node_modules/jest-runtime/build/index.js:1678:14)
-      at Object.<anonymous> (src/index.ts:1:1)
-      at Object.<anonymous> (src/index.test.ts:1:1)
+      at Runtime.requireModule (node_modules/jest-runtime/build/index.js:943:21)
+      at Object.<anonymous> (src/foo.tsx:1:1)
+      at Object.<anonymous> (src/foo.test.tsx:1:1)
+
+(node:23660) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
 ```
-
-I tried switching the whole project over to ESM but that showed a similar problem (see `esm` branch).
